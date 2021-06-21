@@ -303,6 +303,7 @@
   .how-app-work-section .download-btn {
     padding-left: 60px;
     padding-right: 30px;
+    width: 100%;
   }
   .how-app-work-section .download-btn i.fab {
     left: 25px;
@@ -633,6 +634,7 @@
   .how-app-work-section .download-btn.active {
     margin-right: 0;
     margin-bottom: 30px;
+    width: 100%;
   }
   .fun-fact .separator {
     margin-bottom: 50px;
