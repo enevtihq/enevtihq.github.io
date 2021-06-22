@@ -501,7 +501,7 @@ a:active {
 }
 
 .banner-static {
-  background: #fff url(../img/slider-bg.jpg) 90% top no-repeat;
+  background: #fff url(../img/slider-bg.jpg) 50% center no-repeat;
   padding-top: 100px;
   overflow: hidden;
 }
