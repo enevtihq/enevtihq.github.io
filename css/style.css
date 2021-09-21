@@ -2768,9 +2768,10 @@ footer.footer .footer-widget.links-widget ul {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7209b7', endColorstr='#f72585', GradientType=1);
   position: relative;
   padding: 12px 0;
-  padding-left: 80px;
+  padding-left: 70px;
   border-radius: 28px;
-  padding-right: 40px;
+  padding-right: 20px;
+  margin-top: 10px;
 }
 .how-app-work-section .download-btn:before {
   content: "";
@@ -2802,7 +2803,7 @@ footer.footer .footer-widget.links-widget ul {
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  left: 35px;
+  left: 30px;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
 }
