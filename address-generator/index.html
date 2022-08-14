@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      id="u-theme-google-font"
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i"
+    />
+    <link rel="stylesheet" href="index.css" media="screen" />
+    <script src="bundle.js"></script>
+    <title>ENVT Address Generator</title>
+  </head>
+  <script>
+    function showAddressContainer() {
+      const addressContainer = document.getElementById("address-container");
+      addressContainer.style.display = "block";
+    }
+
+    function generatePassprhase() {
+      const passphrase = window.passphrase.Mnemonic.generateMnemonic();
+      const passphraseBox = document.getElementById("text-813b");
+      passphraseBox.value = passphrase;
+      processPassphrase(passphrase);
+    }
+
+    function submitPassphrase() {
+      const passphrase = document.getElementById("text-813b").value;
+      processPassphrase(passphrase);
+    }
+
+    function processPassphrase(passphrase) {
+      const isValid = checkPassphrase(passphrase);
+      if (isValid) {
+        showAddressContainer();
+        const envtAddress = window.cryptography.getLisk32AddressFromPassphrase(
+          passphrase,
+          "envt"
+        );
+        const hexAddress = window.cryptography
+          .getAddressFromPassphrase(passphrase)
+          .toString("hex");
+        document.getElementById("envt-address").innerHTML = envtAddress;
+        document.getElementById("hex-address").innerHTML = hexAddress;
+      } else {
+        alert("Invalid passphrase");
+      }
+    }
+
+    function checkPassphrase(passphrase) {
+      if (passphrase.length <= 0) return false;
+      const errors =
+        window.passphrase.validation.getPassphraseValidationErrors(passphrase);
+      if (errors.length > 0) {
+        return false;
+      }
+      return true;
+    }
+  </script>
+  <body>
+    <section
+      class="u-clearfix u-image u-section-1"
+      id="sec-95c1"
+      data-image-width="1920"
+      data-image-height="1080"
+    >
+      <div
+        class="u-align-center u-container-style u-grey-75 u-group u-radius-30 u-shape-round u-group-1"
+      >
+        <div class="u-container-layout u-container-layout-1">
+          <h2
+            class="u-align-center u-custom-font u-text u-text-1"
+            spellcheck="false"
+          >
+            ENVT Address Generator*
+          </h2>
+          <div class="u-align-center u-form u-form-1">
+            <form
+              action="//publish.nicepage.com/Form/Process"
+              method="POST"
+              class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form"
+              source="email"
+              name="form"
+            >
+              <div class="u-form-group u-form-group-1">
+                <label for="text-813b" class="u-custom-font u-label u-label-1"
+                  >Passphrase</label
+                >
+                <textarea
+                  type="text"
+                  placeholder="Input your existing 12-word passphrase, or generate new passphrase"
+                  id="text-813b"
+                  name="passphrase"
+                  class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"
+                  spellcheck="false"
+                  style="font-family: Poppins"
+                ></textarea>
+              </div>
+              <div
+                class="action-button-container u-align-right u-form-group u-form-submit"
+                style="flex-direction: row"
+              >
+                <a
+                  onclick="generatePassprhase()"
+                  class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-custom-font u-gradient u-hover-black u-none u-radius-19 u-text-body-alt-color u-text-hover-white u-btn-1"
+                  >Generate</a
+                >
+                <a
+                  onclick="submitPassphrase()"
+                  class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-custom-font u-gradient u-hover-black u-none u-radius-19 u-text-body-alt-color u-text-hover-white u-btn-1"
+                  >Submit</a
+                >
+              </div>
+            </form>
+          </div>
+          <div id="address-container" style="display: none">
+            <h5
+              class="address-heading-top address-heading u-align-left u-custom-font u-text u-text-default u-text-2"
+            >
+              ENVT Address
+            </h5>
+            <p
+              id="envt-address"
+              class="address-content u-align-left u-text u-text-3"
+            >
+              please provide a passphrase
+            </p>
+            <h5
+              class="address-heading u-align-left u-custom-font u-text u-text-default u-text-4"
+            >
+              HEX Address
+            </h5>
+            <p
+              id="hex-address"
+              class="address-content u-align-left u-text u-text-5"
+              style="margin-bottom: 32px"
+            >
+              please provide a passphrase
+            </p>
+          </div>
+          <p class="u-align-left u-text u-text-6" style="margin-bottom: 32px">
+            *Please Note: The address is generated from BIP39 based passphrase,
+            as long as you keep the passphrase the same, your address will be
+            the same across alphanet, testnet, and mainnet. SO, MAKE SURE YOU
+            ALWAYS KEEP YOUR PASSPHRASE SAFE!
+          </p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
